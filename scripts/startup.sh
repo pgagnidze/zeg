@@ -9,4 +9,4 @@ sudo mv zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
-sudo /opt/puppetlabs/bin/puppet apply -v zabbix.pp
+sudo /opt/puppetlabs/bin/puppet apply -v /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
