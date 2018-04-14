@@ -5,7 +5,7 @@ $vm = 'zeg-centos7-instance'
 gauth_credential { 'cred':
   provider => serviceaccount,
   path     => $cred_path,
-  scopes   => ['https://www.googleapis.com/auth/compute'],
+  scopes   => ['https://www.googleapis.com/auth/cloud-platform'],
 }
 
 gcompute_network { 'default':
@@ -45,6 +45,18 @@ gcompute_disk { $vm:
   credential   => 'cred',
 }
 
+gstorage_bucket { 'bucket-startup-script':
+  ensure     => present,
+  predefined_default_object_acl => 'publicRead',
+  project    => $project,
+  credential => 'cred',
+}
+
+exec { 'upload-startup-script':
+    command => "/bin/bash -c 'sudo -H -u pg gsutil cp /etc/puppetlabs/code/environments/production/scripts/startup.sh gs://bucket-startup-script
+                              sudo -H -u pg gsutil acl ch -u AllUsers:R gs://bucket-startup-script/startup.sh'",
+  }
+
 gcompute_instance { $vm:
   ensure             => present,
   machine_type       => 'n1-standard-1',
@@ -55,6 +67,9 @@ gcompute_instance { $vm:
       auto_delete => true,
     }
   ],
+  metadata           => {
+      'startup-script-url' => 'gs://bucket-startup-script/startup.sh',
+    },
   network_interfaces => [
     {
       network        => 'default',
