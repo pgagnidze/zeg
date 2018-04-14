@@ -6,12 +6,11 @@ sudo yum -y install git
 
 if [ -d "$HOME/zeg" ]; then
   cd $HOME/zeg && git reset --hard && git pull
-fi
 else
   git clone https://github.com/papungag/zeg.git
 fi
   
-sudo mv zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
+sudo mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
