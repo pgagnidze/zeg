@@ -7,7 +7,7 @@ sudo yum -y install git
 if [ -d "$HOME/zeg" ]; then
   cd $HOME/zeg && git reset --hard && git pull
 else
-  git clone https://github.com/papungag/zeg.git
+  git clone https://github.com/papungag/zeg.git ~/zeg
 fi
   
 sudo mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
