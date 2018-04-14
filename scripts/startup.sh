@@ -5,7 +5,7 @@ sudo yum -y install puppet-agent
 sudo yum -y install git
 
 if [ -d "$HOME/zeg" ]; then
-  cd $HOME/zeg && git reset --hard && git checkout
+  cd $HOME/zeg && git reset --hard && git pull
 fi
 else
   git clone https://github.com/papungag/zeg.git
