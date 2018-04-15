@@ -1,6 +1,7 @@
 from lxml import html
 from lxml import cssselect
 from os.path import expanduser
+from shutil import copy2
 import requests
 import json
 
@@ -19,3 +20,4 @@ for price in prices:
 
 with open(home + '/data.json', 'w') as outfile:
     json.dump(data, outfile)
+copy2(home + '/data.json', '/data.json')
