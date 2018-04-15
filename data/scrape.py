@@ -1,6 +1,7 @@
 from lxml import html
 from lxml import cssselect
 import requests
+import json
 
 page = requests.get('http://markets.wsj.com/us')
 tree = html.fromstring(page.content)
@@ -14,6 +15,5 @@ for price in prices:
         'last': price[1].text
     })
 
-out_file = open('data.json', 'w')
-out_file.write(str(data))
-out_file.close()
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
