@@ -2,6 +2,12 @@
 Zabbix setup on Google Cloud with Puppet configuration management and startup scripts
 
 ### Steps
+1. Clone this repository and move content to the puppet environment directory
+   ```bash
+    $ git clone https://github.com/papungag/zeg.git
+    $ sudo rm -rf /etc/puppetlabs/code/environments/production/*
+    $ sudo mv zeg/* /etc/puppetlabs/code/environments/production/
+   ```
 1. Install gems for GCP modules
    ```bash
     $ puppet resource package googleauth ensure=present provider=puppet_gem
