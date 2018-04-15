@@ -28,9 +28,7 @@ itemids = []
 for i in range(-1, -9, -1):
     itemids.append(items[i]["itemid"])
 
-print(itemids)
-
-if not itemids[0] < 28250:
+if itemids[0] > '28250':
     for itemid in itemids:
         itemdel = zapi.item.delete(
             itemid
