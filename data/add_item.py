@@ -17,6 +17,26 @@ data = open('data.json').read()
 json_dict = json.loads(data)
 
 hosts = zapi.host.get(filter={"host": host_name}, selectInterfaces=["interfaceid"])
+
+# Delete old items
+
+items = zapi.item.get({
+    "hostids": hosts[0]["hostid"],
+})
+
+itemids = []
+for i in range(-1, -9, -1):
+    itemids.append(items[i]["itemid"])
+
+for itemid in itemids:
+    itemdel = zapi.item.delete(
+        itemid
+    )
+    print("Deleted item with id {}".format(itemid))
+    latest_item_id = itemid
+
+# Add new items
+
 if hosts:
     host_id = hosts[0]["hostid"]
     print("Found host id {0}".format(host_id))
