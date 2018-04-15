@@ -22,5 +22,3 @@ Zabbix setup on Google Cloud with Puppet configuration management and startup sc
    ```bash
     $ puppet apply -v /etc/puppetlabs/code/environments/production/manifests/instances.pp
    ```
-
-[source]: https://github.com/yoyowallet/devops-interview
