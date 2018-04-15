@@ -17,15 +17,15 @@ sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=tr
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
 sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
 
-sleep 5m
+sleep 2m
 
 sudo pip install pyzabbix
 sudo pip install lxml
 sudo pip install cssselect
 
-mv $HOME/zeg/data/* $HOME/
-/usr/bin/python $HOME/add_host.py
+mv $HOME/zeg/data/* .
+/usr/bin/python add_host.py
 
-crontab -l | { cat; echo "* * * * * /usr/bin/python $HOME/scrape.py"; } | crontab -
-crontab -l | { cat; echo "*/2 * * * * /usr/bin/python $HOME/add_host.py"; } | crontab -
-crontab -l | { cat; echo "*/5 * * * * /usr/bin/python $HOME/add_item.py"; } | crontab -
+crontab -l | { cat; echo "* * * * * /usr/bin/python scrape.py"; } | crontab -
+crontab -l | { cat; echo "*/2 * * * * /usr/bin/python add_host.py"; } | crontab -
+crontab -l | { cat; echo "*/5 * * * * /usr/bin/python add_item.py"; } | crontab -

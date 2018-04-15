@@ -46,10 +46,10 @@ gcompute_disk { $vm:
 }
 
 gstorage_bucket { 'bucket-startup-script':
-  ensure     => present,
+  ensure                        => present,
   predefined_default_object_acl => 'publicRead',
-  project    => $project,
-  credential => 'cred',
+  project                       => $project,
+  credential                    => 'cred',
 }
 
 exec { 'upload-startup-script':
