@@ -15,13 +15,13 @@ sudo mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manif
 
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
-sudo /opt/puppetlabs/bin/puppet apply -v /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
+sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
 
 sudo pip install pyzabbix
 sudo pip install lxml
 sudo pip install cssselect
 
 mv $HOME/zeg/data/* $HOME/
-python add_host.py
+/usr/bin/python $HOME/add_host.py
 crontab -l | { cat; echo "* * * * * /usr/bin/python $HOME/scrape.py"; } | crontab -
 crontab -l | { cat; echo "*/5 * * * * /usr/bin/python $HOME/add_item.py"; } | crontab -

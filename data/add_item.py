@@ -28,12 +28,17 @@ itemids = []
 for i in range(-1, -9, -1):
     itemids.append(items[i]["itemid"])
 
-for itemid in itemids:
-    itemdel = zapi.item.delete(
-        itemid
-    )
-    print("Deleted item with id {}".format(itemid))
-    latest_item_id = itemid
+print(itemids)
+
+if not itemids[0] < 28250:
+    for itemid in itemids:
+        itemdel = zapi.item.delete(
+            itemid
+        )
+        print("Deleted item with id {}".format(itemid))
+        latest_item_id = itemid
+else:
+    print("Cannot delete templated items")
 
 # Add new items
 
