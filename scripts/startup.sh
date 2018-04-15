@@ -21,6 +21,7 @@ sudo pip install pyzabbix
 sudo pip install lxml
 sudo pip install cssselect
 
-cd $HOME/zeg/data && python add_host.py
-crontab -l | { cat; echo "* * * * * /usr/bin/python $HOME/zeg/data/scrape.py"; } | crontab -
-crontab -l | { cat; echo "*/5 * * * * /usr/bin/python $HOME/zeg/data/add_item.py"; } | crontab -
+mv $HOME/zeg/data/* $HOME/
+python add_host.py
+crontab -l | { cat; echo "* * * * * /usr/bin/python $HOME/scrape.py"; } | crontab -
+crontab -l | { cat; echo "*/5 * * * * /usr/bin/python $HOME/add_item.py"; } | crontab -
