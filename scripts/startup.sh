@@ -3,6 +3,7 @@
 sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 sudo yum -y install puppet-agent
 sudo yum -y install git
+sudo yum -y install python-pip
 
 if [ -d "$HOME/zeg" ]; then
   cd $HOME/zeg && git reset --hard && git pull
@@ -15,3 +16,11 @@ sudo mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manif
 sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 sudo /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
 sudo /opt/puppetlabs/bin/puppet apply -v /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
+
+sudo pip install pyzabbix
+sudo pip install lxml
+sudo pip install cssselect
+
+cd $HOME/zeg/data && python add_host.py
+crontab -l | { cat; echo "* * * * * /usr/bin/python $HOME/zeg/data/scrape.py"; } | crontab -
+crontab -l | { cat; echo "*/5 * * * * /usr/bin/python $HOME/zeg/data/add_item.py"; } | crontab -
