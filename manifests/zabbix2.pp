@@ -13,8 +13,9 @@ class { 'zabbix::agent':
 }
 
 class { 'zabbix':
-  zabbix_url    => 'zabbix.zeg',
-  database_type => 'mysql',
+  zabbix_url      => 'zabbix',
+  database_type   => 'mysql',
+  zabbix_timezone => 'Azia/Tbilisi',
 }
 
 if $facts['selinux'] {
