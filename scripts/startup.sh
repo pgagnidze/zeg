@@ -12,8 +12,8 @@ fi
 
 mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
 /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
-/opt/puppetlabs/bin/puppet module install puppet-zabbix --version 6.3.1
-/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/zabbix2.pp
+/opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
+/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
 
 mv $HOME/zeg/data/* $HOME/
 /usr/bin/python $HOME/add_host.py
