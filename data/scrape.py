@@ -18,6 +18,16 @@ for price in prices:
         'last': price[1].text
     })
 
-with open(home + '/data.json', 'w') as outfile:
-    json.dump(data, outfile)
-copy2(home + '/data.json', '/data.json')
+name = []
+last = []
+for entry in data:
+        name.append(entry['name'])
+        last.append(entry['last'])
+
+with open(home + '/name.json', 'w') as outfile:
+    json.dump(name, outfile)
+copy2(home + '/name.json', '/name.json')
+
+with open(home + '/last.json', 'w') as outfile:
+    json.dump(last, outfile)
+copy2(home + '/last.json', '/last.json')
