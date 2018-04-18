@@ -19,9 +19,9 @@ if not hosts:
             {
                 "type":1,
                 "main":1,
-                "useip":1,
+                "useip":0,
                 "ip":"127.0.0.1",
-                "dns":"",
+                "dns":"zabbix-agent",
                 "port":10050
             }
         ],

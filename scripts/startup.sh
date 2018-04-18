@@ -15,6 +15,8 @@ mv $HOME/zeg/manifests/* /etc/puppetlabs/code/environments/production/manifests/
 /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 1.1.0
 /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/zabbix.pp
 
+2m
+
 mv $HOME/zeg/data/* $HOME/
 /usr/bin/python $HOME/add_host.py
 /usr/bin/python $HOME/add_item.py
