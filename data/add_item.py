@@ -29,9 +29,9 @@ if hosts:
                 name=entry,
                 key_='system.run[grep \'"\' /data/last.json | cut -d \'"\' -f{}]'.format(i),
                 type=0,
-                value_type=4,
+                value_type=3,
                 interfaceid=hosts[0]["interfaces"][0]["interfaceid"],
-                delay='5s'
+                delay='5m'
             )
         except ZabbixAPIException as e:
             print(e)
