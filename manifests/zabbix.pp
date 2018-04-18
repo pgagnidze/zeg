@@ -58,7 +58,7 @@ docker::run { 'zabbix-web':
 
 docker::run { 'zabbix-agent':
   image      => 'zabbix/zabbix-agent:latest',
-  env        => ['ZBX_HOSTNAME="zabbix-server"', 'ZBX_SERVER_HOST="zabbix-server"'],
+  env        => ['ZBX_HOSTNAME=zabbix-server', 'ZBX_SERVER_HOST=zabbix-server'],
   ports      => ['10050:10050'],
   links      => ['zabbix-server:zabbix-server'],
   privileged => true,
