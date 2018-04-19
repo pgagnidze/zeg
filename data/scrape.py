@@ -22,10 +22,8 @@ name = []
 last = []
 for entry in data:
         name.append(entry['name'])
-        last.append(float(entry['last']))
+        last.append(entry['last'])
 
-
-print(last)
 with open(home + '/name.json', 'w') as outfile:
     json.dump(name, outfile)
 copy2(home + '/name.json', '/name.json')
